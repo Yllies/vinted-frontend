@@ -19,12 +19,11 @@ const OfferCard = ({ offerData }) => {
 
         <img src={product_image.secure_url} alt="" />
         <p>{product_price} €</p>
-        {/* <p>{offer.product_details}</p> */}
         {product_details.map((detail, index) => {
           if (detail.TAILLE) {
             return <p key={index}>{detail.TAILLE}</p>;
           } else if (detail.MARQUE) {
-            <p>{detail.MARQUE}</p>;
+            return <p key={index}>{detail.MARQUE}</p>;
           } else {
             return null;
           }

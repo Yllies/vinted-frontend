@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../logo.png";
-import OfferCard from "../components/OfferCard";
+import OfferCard from "../../components/OfferCard";
 
 const Home = () => {
   const [data, setData] = useState({});
@@ -26,10 +26,6 @@ const Home = () => {
     <p>Loading...</p>
   ) : (
     <>
-      <header>
-        <img src={logo} alt="logo vinted" />
-      </header>
-
       <div className="home-cards">
         {data.offers.map((offer) => {
           return <OfferCard key={offer._id} offerData={offer} />;

@@ -23,7 +23,29 @@ const Offer = () => {
     fetchData();
   }, [id]);
 
-  return isLoading ? <p>Loading...</p> : console.log(data);
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
+    <article>
+      <img src={data.product_image.secure_url} alt="" />
+      {data.product_details.map((detail, index) => {
+        const keyName = Object.keys(detail)[0];
+
+        return (
+          <div key={index}>
+            <span key={index}>{keyName} : </span>
+            <span>{detail[keyName]}</span>
+          </div>
+        );
+      })}
+      <div>
+        <p>{data.product_name}</p>
+        <p>{data.product_description}</p>
+        <p>{data.owner.account.username}</p>;
+      </div>
+      <button>Acheter</button>
+    </article>
+  );
 };
 
 export default Offer;
