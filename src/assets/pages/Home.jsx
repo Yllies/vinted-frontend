@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import logo from "../logo.png";
+// import logo from "../logo.png";
 import OfferCard from "../../components/OfferCard";
 
 const Home = () => {
@@ -25,13 +25,11 @@ const Home = () => {
   return isLoading ? (
     <p>Loading...</p>
   ) : (
-    <>
-      <div className="home-cards">
-        {data.offers.map((offer) => {
-          return <OfferCard key={offer._id} offerData={offer} />;
-        })}
-      </div>
-    </>
+    <div className="home-cards">
+      {data.offers.map((offer) => {
+        return <OfferCard key={offer._id} offerData={offer} />;
+      })}
+    </div>
   );
 };
 

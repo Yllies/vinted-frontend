@@ -1,14 +1,32 @@
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ handleToken, token }) => {
   return (
     <header>
       <Link to="/">
         <img src={logo} alt="logo vinted" />
       </Link>
-      <button>S'inscrire</button>
-      <button>Se connecter</button>
+      {token ? (
+        <button
+          onClick={() => {
+            handleToken(null);
+          }}
+        >
+          Déconnexion
+        </button>
+      ) : (
+        <>
+          <Link to="/signup">
+            <button>S'inscrire</button>
+          </Link>
+          <Link to="/login">
+            <button>Se connecter</button>
+          </Link>
+          {/* {console.log()} */}
+          {}
+        </>
+      )}
     </header>
   );
 };
