@@ -3,7 +3,7 @@ import axios from "axios";
 // import logo from "../logo.png";
 import OfferCard from "../../components/OfferCard";
 
-const Home = () => {
+const Home = ({ search }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,7 +11,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -20,12 +20,14 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="home-cards">
+      {console.log(search)}
+
       {data.offers.map((offer) => {
         return <OfferCard key={offer._id} offerData={offer} />;
       })}
