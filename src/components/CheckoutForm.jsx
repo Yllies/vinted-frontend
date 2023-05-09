@@ -12,23 +12,23 @@ const CheckoutForm = ({ token }) => {
   const location = useLocation();
 
   const { price, title } = location.state;
-
+  console.log(price);
+  console.log(title);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       setIsLoading(true);
       const cardElement = elements.getElement(CardElement);
+
       const stripeResponse = await stripe.createToken(cardElement, {
-        token: token,
-        title: title,
-        amount: price,
+        name: token,
       });
 
       const stripeToken = stripeResponse.token.id;
 
       const responseFromBackend = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/payment",
-        { stripeToken: stripeToken }
+        "http://lereacteur-vinted-api.herokuapp.com/payment",
+        { token: stripeToken, title: title, amount: price }
       );
 
       if (responseFromBackend.data === "succeeded") {
@@ -36,7 +36,7 @@ const CheckoutForm = ({ token }) => {
         setCompleted(true);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response.data);
     }
   };
 

@@ -44,7 +44,7 @@ const Offer = () => {
         <p>{data.product_description}</p>
         <p>{data.owner.account.username}</p>
       </div>
-
+      {console.log(data)}
       <button
         onClick={() => {
           navigate("/payment", {
