@@ -9,10 +9,11 @@ const stripePromise = loadStripe(
 
 const Payment = ({ token }) => {
   console.log(token);
-
-  <Elements stripe={stripePromise}>
-    <CheckoutForm />
-  </Elements>;
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
+  );
 };
 
 export default Payment;
