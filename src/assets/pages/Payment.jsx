@@ -1,5 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { Navigate } from "react-router-dom";
 
 import CheckoutForm from "../../components/CheckoutForm";
 
@@ -8,11 +9,12 @@ const stripePromise = loadStripe(
 );
 
 const Payment = ({ token }) => {
-  console.log(token);
-  return (
+  return token ? (
     <Elements stripe={stripePromise}>
       <CheckoutForm />
     </Elements>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
