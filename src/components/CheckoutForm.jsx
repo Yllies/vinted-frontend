@@ -31,7 +31,7 @@ const CheckoutForm = ({ token }) => {
         { token: stripeToken, title: title, amount: price }
       );
 
-      if (responseFromBackend.data === "succeeded") {
+      if (responseFromBackend.data.status === "succeeded") {
         setIsLoading(false);
         setCompleted(true);
       }
