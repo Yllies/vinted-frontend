@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
@@ -46,7 +47,7 @@ const Publish = ({ token }) => {
     }
   };
 
-  return (
+  return token ? (
     <div>
       <h1>Vends ton article</h1>
       <form onSubmit={handleSubmit}>
@@ -56,7 +57,6 @@ const Publish = ({ token }) => {
             onChange={(event) => {
               setPicture(event.target.files[0]);
             }}
-            value={picture}
           />
         </div>
         <div className="text-input-section">
@@ -156,6 +156,8 @@ const Publish = ({ token }) => {
         <button type="submit">Ajouter</button>
       </form>
     </div>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
